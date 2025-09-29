@@ -1,3 +1,13 @@
+
+const express = require('express');
+const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+const app = express();
+const PORT = 4001;
+
+app.use(cors());
+app.use(express.json());
+
 // --- Background interval for updating trains arriving in next 30 minutes ---
 const UPDATE_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 function updateUpcomingTrains() {
@@ -55,15 +65,6 @@ function updateUpcomingTrains() {
   });
 }
 setInterval(updateUpcomingTrains, UPDATE_INTERVAL_MS);
-
-const express = require('express');
-const cors = require('cors');
-const sqlite3 = require('sqlite3').verbose();
-const app = express();
-const PORT = 4001;
-
-app.use(cors());
-app.use(express.json());
 
 
 

@@ -27,7 +27,8 @@ export default function TrainTrafficManagement() {
   const [precipitation, setPrecipitation] = useState<number | null>(null)
 
   useEffect(() => {
-    fetch("http://localhost:4001/api/weather")
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4001";
+    fetch(`${apiUrl}/api/weather`)
       .then((res) => res.json())
       .then((data) => {
         setTemperature(
@@ -54,7 +55,8 @@ export default function TrainTrafficManagement() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:4001/api/active")
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4001";
+    fetch(`${apiUrl}/api/active`)
       .then((res) => res.json())
       .then((data) => {
         // Example: expecting backend to return { count: 54 }

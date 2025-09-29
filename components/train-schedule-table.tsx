@@ -34,7 +34,8 @@ export function TrainScheduleTable() {
 
   useEffect(() => {
     setLoading(true)
-    fetch("http://localhost:4001/api/trains")
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4001";
+    fetch(`${apiUrl}/api/trains`)
       .then((res) => res.json())
       .then((data) => {
         setTrainData(data.trains || [])

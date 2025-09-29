@@ -4,9 +4,10 @@ export default function BackendTest() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/hello")
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4001";
+    fetch(`${apiUrl}/api/health`)
       .then((res) => res.json())
-      .then((data) => setMessage(data.message))
+      .then((data) => setMessage(data.status || data.message || "Connected"))
       .catch(() => setMessage("Error connecting to backend"));
   }, []);
 
