@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "clean": "rm -rf .next out",
+    "build:clean": "npm run clean && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
