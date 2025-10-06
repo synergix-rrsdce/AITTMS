@@ -41,13 +41,12 @@ function initializeTodayDb() {
         return;
       }
       
-      // Drop existing table and recreate with fresh data for today
       todayDb.run(`DROP TABLE IF EXISTS allocations`);
       todayDb.run(`CREATE TABLE allocations AS SELECT * FROM mainDb.allocations WHERE days = ?`, [currentDay], (err) => {
         if (err) {
           console.error('Error creating today table:', err);
         } else {
-          console.log(`✅ Today's database initialized for ${currentDay}`);
+          console.log(`Today's database initialized for ${currentDay}`);
         }
         todayDb.close();
       });
